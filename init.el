@@ -318,6 +318,7 @@ you should place your code here."
   (setq powerline-default-separator 'utf-8)
   (setq linum-relative-format " %3s ")
 	(setq projectile-enable-caching t)
+	(add-hook 'after-save-hook 'magit-after-save-refresh-status)
   (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
   (define-key evil-normal-state-map "U" 'undo-tree-redo)
   (setq theming-modifications
