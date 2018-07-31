@@ -321,30 +321,31 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+	;; Interface
   (setq powerline-default-separator 'utf-8)
   (setq linum-relative-format " %3s ")
+  (blink-cursor-mode t)
   (setq blink-cursor-blinks 0)
   (setq-default line-spacing 4)
+  (font-lock-add-keywords 'js2-mode '(("[<>:&*=+^%!~.?/-]" . font-lock-keyword-face)))
   (setq evil-insert-state-cursor  `("#FFFFFF" bar)
         evil-motion-state-cursor  `("#FFFFFF" hbar)
         evil-normal-state-cursor  `("#FFFFFF" hbar)
         )
-  (blink-cursor-mode t)
+  (disable-theme 'spacemacs-dark)
+  (load-theme 'miami t)
+
+	;; Editing
+  (setq-default indent-tabs-mode t)
+	(setq js2-basic-offset 2)
+  (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
+  (add-to-list 'auto-mode-alist '("\\.isml$" . html-mode))
+  (define-key evil-normal-state-map "U" 'undo-tree-redo)
+
+	;; Projects
 	(setq projectile-enable-caching t)
 	(add-hook 'after-save-hook 'magit-after-save-refresh-status)
   (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
-  (font-lock-add-keywords 'js2-mode '(("[<>:&*=+^%!~.?/-]" . font-lock-keyword-face)))
-  (define-key evil-normal-state-map "U" 'undo-tree-redo)
-  (setq theming-modifications
-        '((spacemacs-dark
-           (term-color-black :foreground "#003541" :background "#003541" :inverse-video nil)
-           (term-color-blue :foreground "#2075c7" :background "#2075c7" :inverse-video nil)
-           (term-color-green :foreground "#fff200" :background "#fff200" :inverse-video nil)
-           (term-color-yellow :foreground "#0afbbc" :background "#0afbbc" :inverse-video nil)
-        ))
-  )
-  (disable-theme 'spacemacs-dark)
-  (load-theme 'miami t)
   )
 
 
