@@ -144,7 +144,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Fira Code"
                                :size 15
                                :weight normal
                                :width normal
@@ -341,6 +341,8 @@ you should place your code here."
   (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
   (add-to-list 'auto-mode-alist '("\\.isml$" . html-mode))
   (define-key evil-normal-state-map "U" 'undo-tree-redo)
+  (if (eq system-type 'darwin)
+      (mac-auto-operator-composition-mode))
 
 	;; Projects
 	(setq projectile-enable-caching t)
