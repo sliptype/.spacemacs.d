@@ -65,6 +65,7 @@ values."
       magit
 			all-the-icons
 			rjsx-mode
+      evil-visualstar
       ;; highlight-indent-guides
       ;; (miami-theme :location (recipe :fetcher github :repo "sliptype/miami-theme"))
       )
@@ -356,6 +357,7 @@ you should place your code here."
   (define-key evil-normal-state-map "U" 'undo-tree-redo)
   (if (eq system-type 'darwin)
       (mac-auto-operator-composition-mode))
+  (global-evil-visualstar-mode)
 
 	;; Projects
 	(setq projectile-enable-caching t)
