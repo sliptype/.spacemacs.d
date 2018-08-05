@@ -32,6 +32,7 @@ values."
    dotspacemacs-configuration-layers
    '(
 		 html
+     purescript
      javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -62,7 +63,9 @@ values."
    dotspacemacs-additional-packages '(
       helm-ag
       magit
-      (miami-theme :location (recipe :fetcher github :repo "sliptype/miami-theme"))
+			all-the-icons
+      ;; highlight-indent-guides
+      ;; (miami-theme :location (recipe :fetcher github :repo "sliptype/miami-theme"))
       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -323,10 +326,17 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 	;; Interface
+  (setq custom-theme-directory "~/workspace/miami-theme")
   (setq powerline-default-separator 'utf-8)
   (setq linum-relative-format " %3s ")
   (blink-cursor-mode t)
   (setq blink-cursor-blinks 0)
+	(setq neo-theme 'icons)
+	(setq neo-banner-message nil)
+
+
+  (setq-default indent-tabs-mode t)
+  (setq js2-basic-offset 2)
   (setq-default line-spacing 4)
   (font-lock-add-keywords 'js2-mode '(("[<>:&*=+^%!~.?/-]" . font-lock-keyword-face)))
   (setq evil-insert-state-cursor  `("#FFFFFF" bar)
@@ -360,7 +370,8 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub with-editor web-beautify livid-mode skewer-mode simple-httpd json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js-doc json-mode js2-mode coffee-mode xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+   (quote
+    (all-the-icons memoize reveal-in-osx-finder psci purescript-mode psc-ide flycheck pbcopy osx-trash osx-dictionary launchctl helm-company helm-c-yasnippet fuzzy company-tern dash-functional tern company-statistics company auto-yasnippet auto-complete miami-theme smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub with-editor web-beautify livid-mode skewer-mode simple-httpd json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js-doc json-mode js2-mode coffee-mode xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
