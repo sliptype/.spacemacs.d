@@ -67,7 +67,7 @@ values."
 			rjsx-mode
       evil-visualstar
       ;; highlight-indent-guides
-      ;; (miami-theme :location (recipe :fetcher github :repo "sliptype/miami-theme"))
+      (miami-theme :location (recipe :fetcher github :repo "sliptype/miami-theme"))
       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -328,7 +328,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 	;; Interface
-  (setq custom-theme-directory "~/workspace/miami-theme")
+  ;; (setq custom-theme-directory "~/workspace/miami-theme")
   (setq powerline-default-separator 'utf-8)
   (setq linum-relative-format " %3s ")
   (blink-cursor-mode t)
