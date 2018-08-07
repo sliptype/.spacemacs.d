@@ -351,6 +351,7 @@ you should place your code here."
 	;; Editing
   (setq-default indent-tabs-mode t)
 	(setq js2-basic-offset 2)
+	(setq js-switch-indent-offset 2)
   (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
   (add-to-list 'auto-mode-alist '("\\.isml$" . html-mode))
 	(add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
