@@ -331,14 +331,19 @@ you should place your code here."
   ;; (setq custom-theme-directory "~/workspace/miami-theme")
   (setq powerline-default-separator 'utf-8)
   (setq linum-relative-format " %3s ")
+  (global-whitespace-mode 1)
+  (advice-add 'linum-relative :filter-return
+    (lambda (num)
+      (if (not (get-text-property 0 'invisible num))
+        (propertize (replace-regexp-in-string " " "\u2002" num)
+          'face (get-text-property 0 'face num)))))
+	;; (setq-default left-fringe-width  10)
   (blink-cursor-mode t)
   (setq blink-cursor-blinks 0)
 	(setq neo-theme 'icons)
 	(setq neo-banner-message nil)
+	(setq whitespace-line-column 999)
 
-
-  (setq-default indent-tabs-mode t)
-  (setq js2-basic-offset 2)
   (setq-default line-spacing 4)
   (font-lock-add-keywords 'js2-mode '(("[<>:&*=+^%!~.?/-]" . font-lock-keyword-face)))
   (setq evil-insert-state-cursor  `("#FFFFFF" bar)
@@ -348,10 +353,12 @@ you should place your code here."
   (disable-theme 'spacemacs-dark)
   (load-theme 'miami t)
 
-	;; Editing
+  ;; Editing
   (setq-default indent-tabs-mode t)
 	(setq js2-basic-offset 2)
 	(setq js-switch-indent-offset 2)
+  (setq tab-width 2)
+  (setq sgml-basic-offset 4)
   (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
   (add-to-list 'auto-mode-alist '("\\.isml$" . html-mode))
 	(add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
@@ -360,9 +367,9 @@ you should place your code here."
       (mac-auto-operator-composition-mode))
   (global-evil-visualstar-mode)
 
-	;; Projects
-	(setq projectile-enable-caching t)
-	(add-hook 'after-save-hook 'magit-after-save-refresh-status)
+  ;; Projects
+  (setq projectile-enable-caching t)
+  (add-hook 'after-save-hook 'magit-after-save-refresh-status)
   (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
   )
 
@@ -376,7 +383,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rjsx-mode all-the-icons memoize reveal-in-osx-finder psci purescript-mode psc-ide flycheck pbcopy osx-trash osx-dictionary launchctl helm-company helm-c-yasnippet fuzzy company-tern dash-functional tern company-statistics company auto-yasnippet auto-complete miami-theme smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub with-editor web-beautify livid-mode skewer-mode simple-httpd json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js-doc json-mode js2-mode coffee-mode xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (ac-ispell rjsx-mode all-the-icons memoize reveal-in-osx-finder psci purescript-mode psc-ide flycheck pbcopy osx-trash osx-dictionary launchctl helm-company helm-c-yasnippet fuzzy company-tern dash-functional tern company-statistics company auto-yasnippet auto-complete miami-theme smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub with-editor web-beautify livid-mode skewer-mode simple-httpd json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js-doc json-mode js2-mode coffee-mode xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
