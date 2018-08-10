@@ -101,7 +101,7 @@ values."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https nil
+   dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 5
    ;; If non nil then spacemacs will check for updates at startup
@@ -351,6 +351,7 @@ you should place your code here."
 	;; Editing
   (setq-default indent-tabs-mode t)
 	(setq js2-basic-offset 2)
+	(setq js-switch-indent-offset 2)
   (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
   (add-to-list 'auto-mode-alist '("\\.isml$" . html-mode))
 	(add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
