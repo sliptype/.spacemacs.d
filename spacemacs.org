@@ -18,10 +18,6 @@
   ;; (setq custom-theme-directory "~/workspace/miami-theme")
   (setq-default line-spacing 4)
   (font-lock-add-keywords 'js2-mode '(("[<>:&*=+^%!~.?/-]" . font-lock-keyword-face)))
-  (setq evil-insert-state-cursor  `("#FFFFFF" bar)
-        evil-motion-state-cursor  `("#FFFFFF" hbar)
-        evil-normal-state-cursor  `("#FFFFFF" hbar)
-        )
   (disable-theme 'spacemacs-dark)
   (load-theme 'miami t)
 #+END_SRC
@@ -48,6 +44,10 @@
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
   (blink-cursor-mode t)
   (setq blink-cursor-blinks 0)
+  (setq evil-insert-state-cursor  `("#FFFFFF" bar)
+        evil-motion-state-cursor  `("#FFFFFF" hbar)
+        evil-normal-state-cursor  `("#FFFFFF" hbar)
+        )
 #+END_SRC
 
 * Editing
