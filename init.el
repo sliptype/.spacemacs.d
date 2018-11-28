@@ -46,7 +46,7 @@ values."
      emacs-lisp
      git
      ;; markdown
-     ;; org
+     org
      osx
      (shell :variables
             shell-default-shell 'eshell
