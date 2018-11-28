@@ -1,0 +1,82 @@
+* Init
+#+BEGIN_SRC emacs-lisp :tangle user-init.el
+#+END_SRC
+
+* Keybindings
+#+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (defun edit-spacemacs-dot-org () (interactive)
+    (find-file "~/.spacemacs.d/spacemacs.org"))
+  (spacemacs/set-leader-keys "feo" 'edit-spacemacs-dot-org)
+
+  (define-key evil-normal-state-map "U" 'undo-tree-redo)
+#+END_SRC
+
+* Interface
+#+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (setq powerline-default-separator 'utf-8)
+
+  ;; (setq custom-theme-directory "~/workspace/miami-theme")
+  (setq-default line-spacing 4)
+  (font-lock-add-keywords 'js2-mode '(("[<>:&*=+^%!~.?/-]" . font-lock-keyword-face)))
+  (setq evil-insert-state-cursor  `("#FFFFFF" bar)
+        evil-motion-state-cursor  `("#FFFFFF" hbar)
+        evil-normal-state-cursor  `("#FFFFFF" hbar)
+        )
+  (disable-theme 'spacemacs-dark)
+  (load-theme 'miami t)
+#+END_SRC
+
+** NeoTree
+#+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (setq neo-theme 'icons)
+  (setq neo-banner-message nil)
+#+END_SRC
+
+** Line Numbers
+#+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (setq linum-relative-format " %3s ")
+  (global-whitespace-mode 1)
+  (advice-add 'linum-relative :filter-return
+    (lambda (num)
+      (if (not (get-text-property 0 'invisible num))
+        (propertize (replace-regexp-in-string " " "\u2002" num)
+          'face (get-text-property 0 'face num)))))
+  (setq whitespace-line-column 999)
+#+END_SRC
+
+** Cursor
+#+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (blink-cursor-mode t)
+  (setq blink-cursor-blinks 0)
+#+END_SRC
+
+* Editing
+#+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (setq-default truncate-lines t)
+  (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
+  (add-to-list 'auto-mode-alist '("\\.isml$" . html-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
+  (global-evil-visualstar-mode)
+#+END_SRC
+
+** Indentation
+#+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (setq js2-basic-offset 2)
+  (setq js-switch-indent-offset 2)
+  (setq sgml-basic-offset 2)
+  (setq css-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2)
+  (setq tab-width 2)
+#+END_SRC
+
+** Ligatures
+#+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (if (eq system-type 'darwin)
+      (mac-auto-operator-composition-mode))
+#+END_SRC
+
+* Project Management
+#+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (setq projectile-enable-caching t)
+  (add-hook 'after-save-hook 'magit-after-save-refresh-status)
+#+END_SRC

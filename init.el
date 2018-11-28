@@ -313,69 +313,22 @@ values."
    ))
 
 (defun dotspacemacs/user-init ()
-  "Initialization function for user code.
-It is called immediately after `dotspacemacs/init', before layer configuration
-executes.
- This function is mostly useful for variables that need to be set
-before packages are loaded. If you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
-  )
+  ;; tangle without actually loading org
+  (let ((src (concat dotspacemacs-directory "spacemacs.org"))
+        (ui (concat dotspacemacs-directory "user-init.el"))
+        (uc (concat dotspacemacs-directory "user-config.el")))
+    (when (or (file-newer-than-file-p src ui)
+              (file-newer-than-file-p src uc))
+      (call-process
+        (concat invocation-directory invocation-name)
+        nil nil t
+        "-q" "--batch" "--eval" "(require 'ob-tangle)"
+        "--eval" (format "(org-babel-tangle-file \"%s\")" src)))
+    (load-file ui)))
 
 (defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
-	;; Interface
-  ;; (setq custom-theme-directory "~/workspace/miami-theme")
-  (setq powerline-default-separator 'utf-8)
-  (setq linum-relative-format " %3s ")
-  (global-whitespace-mode 1)
-  (advice-add 'linum-relative :filter-return
-    (lambda (num)
-      (if (not (get-text-property 0 'invisible num))
-        (propertize (replace-regexp-in-string " " "\u2002" num)
-          'face (get-text-property 0 'face num)))))
-	;; (setq-default left-fringe-width  10)
-  (blink-cursor-mode t)
-  (setq blink-cursor-blinks 0)
-	(setq neo-theme 'icons)
-	(setq neo-banner-message nil)
-	(setq whitespace-line-column 999)
-
-  (setq-default line-spacing 4)
-  (font-lock-add-keywords 'js2-mode '(("[<>:&*=+^%!~.?/-]" . font-lock-keyword-face)))
-  (setq evil-insert-state-cursor  `("#FFFFFF" bar)
-        evil-motion-state-cursor  `("#FFFFFF" hbar)
-        evil-normal-state-cursor  `("#FFFFFF" hbar)
-        )
-  (disable-theme 'spacemacs-dark)
-  (load-theme 'miami t)
-
-  ;; Editing
-	(setq js2-basic-offset 2)
-  (setq-default truncate-lines t)
-	(setq js-switch-indent-offset 2)
-  (setq tab-width 2)
-  (setq sgml-basic-offset 2)
-	(setq css-indent-offset 2)
-  (setq web-mode-markup-indent-offset 2)
-  (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
-  (add-to-list 'auto-mode-alist '("\\.isml$" . html-mode))
-	(add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
-  (define-key evil-normal-state-map "U" 'undo-tree-redo)
-  (if (eq system-type 'darwin)
-      (mac-auto-operator-composition-mode))
-  (global-evil-visualstar-mode)
-
-  ;; Projects
-  (setq projectile-enable-caching t)
-  (add-hook 'after-save-hook 'magit-after-save-refresh-status)
-  (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
-  )
-
+  (let ((uc (concat dotspacemacs-directory "user-config.el")))
+    (load-file uc)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
