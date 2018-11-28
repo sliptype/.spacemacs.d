@@ -355,7 +355,6 @@ you should place your code here."
   (load-theme 'miami t)
 
   ;; Editing
-  (setq-default indent-tabs-mode t)
 	(setq js2-basic-offset 2)
   (setq-default truncate-lines t)
 	(setq js-switch-indent-offset 2)
