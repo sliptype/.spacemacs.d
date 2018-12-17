@@ -75,6 +75,13 @@
       (mac-auto-operator-composition-mode))
 #+END_SRC
 
+* Org Mode
+#+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (use-package org
+    :config
+    (setq org-startup-indented t))
+#+END_SRC
+
 * Project Management
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
   (setq projectile-enable-caching t)
