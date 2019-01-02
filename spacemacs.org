@@ -86,3 +86,10 @@
   (setq projectile-enable-caching t)
   (add-hook 'after-save-hook 'magit-after-save-refresh-status)
 #+END_SRC
+
+* Debug
+#+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (setq mac-system-move-file-to-trash-use-finder nil)
+  (setq debug-on-error t)
+#+END_SRC
+
