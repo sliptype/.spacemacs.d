@@ -30,6 +30,7 @@
 
 ** Line Numbers
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (setq linum-relative-format " %3s ")
   (global-whitespace-mode 1)
   (advice-add 'linum-relative :filter-return
     (lambda (num)
