@@ -7,6 +7,7 @@
   (defun edit-spacemacs-dot-org () (interactive)
     (find-file "~/.spacemacs.d/spacemacs.org"))
   (spacemacs/set-leader-keys "feo" 'edit-spacemacs-dot-org)
+  (spacemacs/set-leader-keys "bR" 'rename-buffer)
 
   (define-key evil-normal-state-map "U" 'undo-tree-redo)
 #+END_SRC
