@@ -17,6 +17,7 @@
   (setq powerline-default-separator 'utf-8)
 
   ;; (setq custom-theme-directory "~/workspace/miami-theme")
+  (global-whitespace-mode 1)
   (setq-default line-spacing 4)
   (font-lock-add-keywords 'js2-mode '(("[<>:&*=+^%!~.?/-]" . font-lock-keyword-face)))
   (disable-theme 'spacemacs-dark)
@@ -32,7 +33,6 @@
 ** Line Numbers
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
   (setq linum-relative-format " %3s ")
-  (global-whitespace-mode 1)
   (advice-add 'linum-relative :filter-return
     (lambda (num)
       (if (not (get-text-property 0 'invisible num))
