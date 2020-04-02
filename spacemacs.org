@@ -80,6 +80,13 @@
       (mac-auto-operator-composition-mode))
 #+END_SRC
 
+** Prettier
+#+BEGIN_SRC emacs-lisp :tangle user-config.el
+  (add-hook 'js2-mode-hook 'prettier-js-mode)
+  (add-hook 'typescript-mode-hook 'prettier-js-mode)
+  (add-hook 'web-mode-hook 'prettier-js-mode)
+#+END_SRC
+
 * Org Mode
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
   (use-package org
