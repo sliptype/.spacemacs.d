@@ -69,6 +69,7 @@ values."
 			all-the-icons
 			rjsx-mode
       evil-visualstar
+      prettier-js
       ;; highlight-indent-guides
       (miami-theme :location (recipe :fetcher github :repo "sliptype/miami-theme"))
       )
