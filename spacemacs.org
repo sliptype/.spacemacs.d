@@ -4,22 +4,33 @@
 
 * Keybindings
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
+  ;; Open org mode config with SPC f e o
   (defun edit-spacemacs-dot-org () (interactive)
     (find-file "~/.spacemacs.d/spacemacs.org"))
   (spacemacs/set-leader-keys "feo" 'edit-spacemacs-dot-org)
+
+  ;; Rename buffer with SPC b R
   (spacemacs/set-leader-keys "bR" 'rename-buffer)
 
+  ;; Redo in normal moda with U
   (define-key evil-normal-state-map "U" 'undo-tree-redo)
 #+END_SRC
 
 * Interface
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
+  ;; Remove rounded powerline
   (setq powerline-default-separator 'utf-8)
 
+  ;; Enable this if working on a theme locally
   ;; (setq custom-theme-directory "~/workspace/miami-theme")
+
+  ;; Show whitespace (it's muted via the miami theme)
   (global-whitespace-mode 1)
+
+  ;; Add some visual space between lines
   (setq-default line-spacing 4)
-  (font-lock-add-keywords 'js2-mode '(("[<>:&*=+^%!~.?/-]" . font-lock-keyword-face)))
+
+  ;; Load the miami theme
   (disable-theme 'spacemacs-dark)
   (load-theme 'miami t)
 #+END_SRC
@@ -32,6 +43,9 @@
 
 ** Line Numbers
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
+  ;; If experiencing line number performance issues try updating the backend for
+  ;; linum
+  ;;(setq linum-relative-backend 'display-line-numbers-mode)
   (setq linum-relative-format " %3s ")
   (advice-add 'linum-relative :filter-return
     (lambda (num)
@@ -53,7 +67,9 @@
 
 * Editing
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
+  ;; Truncate lines by default (can be toggled by SPC t l)
   (setq-default truncate-lines t)
+
   (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
   (add-to-list 'auto-mode-alist '("\\.isml$" . html-mode))
   (add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
@@ -74,11 +90,6 @@
   (setq-default typescript-indent-level 2)
 #+END_SRC
 
-** Ligatures
-#+BEGIN_SRC emacs-lisp :tangle user-config.el
-  (if (eq system-type 'darwin)
-      (mac-auto-operator-composition-mode))
-#+END_SRC
 
 ** Prettier
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
@@ -104,5 +115,6 @@
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
   (setq mac-system-move-file-to-trash-use-finder nil)
   (setq debug-on-error t)
+
 #+END_SRC
 
