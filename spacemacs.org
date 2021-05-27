@@ -18,6 +18,9 @@
 
 * Interface
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
+  ;; Remove max width from helm columns
+  (setq helm-buffer-max-length nil)
+
   ;; Remove rounded powerline
   (setq powerline-default-separator 'utf-8)
 
@@ -25,7 +28,7 @@
   ;; (setq custom-theme-directory "~/workspace/miami-theme")
 
   ;; Show whitespace (it's muted via the miami theme)
-  (global-whitespace-mode 1)
+  ;;(global-whitespace-mode 1)
 
   ;; Add some visual space between lines
   (setq-default line-spacing 4)
@@ -109,12 +112,19 @@
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
   (setq projectile-enable-caching t)
   (add-hook 'after-save-hook 'magit-after-save-refresh-status)
+
+  ;; TODO: Disable whitespace painting in magit (disablining global whitespace for now)
+  ;; (defun magit-setup ()
+  ;;     (setq whitespace-mode nil)
+  ;; )
+
+  ;; (add-hook 'magit-mode-hook 'magit-setup)
 #+END_SRC
 
 * Debug
 #+BEGIN_SRC emacs-lisp :tangle user-config.el
   (setq mac-system-move-file-to-trash-use-finder nil)
-  (setq debug-on-error t)
+  (setq debug-on-error f)
 
 #+END_SRC
 
